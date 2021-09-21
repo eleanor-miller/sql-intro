@@ -58,20 +58,15 @@ UPDATE "Employees" SET "FullName" = 'Gavin Stark' WHERE "FullName" = 'Gavin';
 
 -- Create a second table: Departments that has columns; "Name" and "BuildingNumber"
 CREATE TABLE "Departments" (
-	"Name" 				    TEXT,
+  	"Id"			  SERIAL PRIMARY KEY,
+	"Name" 			  TEXT,
  	"BuildingNumber"  TEXT
 );
 
+INSERT INTO "Departments" ("Name", "BuildingNumber") VALUES ('Operations', '1');
+INSERT INTO "Departments" ("Name", "BuildingNumber") VALUES ('Marketing', '2');
+INSERT INTO "Departments" ("Name", "BuildingNumber") VALUES ('Finance', '3');
+INSERT INTO "Departments" ("Name", "BuildingNumber") VALUES ('Human Resources', '3');
+INSERT INTO "Departments" ("Name", "BuildingNumber") VALUES ('Sales', '2');
+
 -- Create a column on the Employees table named "DepartmentID" to relate to the "Departments" table. Make it a foreign key.
-
- ALTER TABLE "Employees" ADD COLUMN "DepartmentId" INT NULL REFERENCES "Departments" ("Id");
-
- UPDATE "Employees" SET "DepartmentId" = 1 WHERE "ID" IN (41, 42, 43, 51);
- UPDATE "Employees" SET "DepartmentId" = 3 WHERE "ID" IN (44, 45);
- UPDATE "Employees" SET "DepartmentId" = 2 WHERE "ID" IN (46, 47);
- UPDATE "Employees" SET "DepartmentId" = 4 WHERE "ID" IN (48);
- UPDATE "Employees" SET "DepartmentId" = 5 WHERE "ID" IN (49);
-
- SELECT *
- FROM "Employees"
- JOIN "Departments" ON "Employees"."DepartmentId" = "Departments"."Id";
